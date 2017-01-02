@@ -8,6 +8,7 @@ if __name__ == '__main__':
         author_email='first.last@domain.com',
         install_requires = (
             'abjad',
+            'consort',
             ),
         name='harb',
         packages=(
