@@ -11,8 +11,8 @@ class HarbScoreTemplate(ScoreTemplate):
 
     def __call__(self):
         performer_group = scoretools.StaffGroup(
-            context_name='PerformerStaff',
-            name='Percussion Performer Group',
+            context_name='PerformerGroup',
+            name='Performer Group',
             )
         performer_group.is_simultaneous = True
         perc_tag = indicatortools.LilyPondCommand(
@@ -27,38 +27,59 @@ class HarbScoreTemplate(ScoreTemplate):
             scope='PerformerGroup',
             is_annotation=True,
             )
+
         string_a_voice = scoretools.Voice(
-            name='Percussion String A Voice',
+            name='String A Voice',
             )
         string_a_staff = scoretools.Staff(
             [string_a_voice],
-            context_name='PercussionStringAStaff',
-            name='Percussion String A Staff',
+            context_name='StringAStaff',
+            name='String A Staff',
             )
+        attach(instrumenttools.Instrument(
+            instrument_name='I',
+            short_instrument_name='I',
+            ), string_a_staff)
+
         string_b_voice = scoretools.Voice(
-            name='Percussion String B Voice',
+            name='String B Voice',
             )
         string_b_staff = scoretools.Staff(
             [string_b_voice],
-            context_name='PercussionStringBStaff',
-            name='Percussion String B Staff',
+            context_name='StringBStaff',
+            name='String B Staff',
             )
+        attach(instrumenttools.Instrument(
+            instrument_name='II',
+            short_instrument_name='II',
+            ), string_b_staff)
+
         string_c_voice = scoretools.Voice(
-            name='Percussion String C Voice',
+            name='String C Voice',
             )
         string_c_staff = scoretools.Staff(
             [string_c_voice],
-            context_name='PercussionStringCStaff',
-            name='Percussion String C Staff',
+            context_name='StringCStaff',
+            name='String C Staff',
             )
+        attach(instrumenttools.Instrument(
+            instrument_name='III',
+            short_instrument_name='III',
+            ), string_c_staff)
+
         string_d_voice = scoretools.Voice(
-            name='Percussion String D Voice',
+            name='String D Voice',
             )
         string_d_staff = scoretools.Staff(
             [string_d_voice],
-            context_name='PercussionStringDStaff',
-            name='Percussion String D Staff',
+            context_name='StringDStaff',
+            name='String D Staff',
             )
+        attach(instrumenttools.Instrument(
+            instrument_name='IV',
+            short_instrument_name='IV',
+            ), string_d_staff)
+
         performer_group.extend((
             string_a_staff,
             string_b_staff,
