@@ -22,64 +22,44 @@
     }
 
     \context {
-        \Voice
+        \TabVoice
         \type Engraver_group
-        \alias Voice
+        \alias TabVoice
         \remove Forbid_line_break_engraver
     }
 
     \context {
-        \Staff
+        \TabVoice
+        \name FingeringVoice
+        \type Engraver_group
+        \alias TabVoice
+    }
+
+    \context {
+        \TabVoice
+        \name SpringVoice
+        \type Engraver_group
+        \alias TabVoice
+    }
+
+    \context {
+        \TabStaff
         \remove Time_signature_engraver
     }
 
     \context {
-        \Staff
-        \name StringAStaff
+        \TabStaff
+        \name PerformerStaff
         \type Engraver_group
-        \alias Staff
-        \accepts Voice
-    }
-
-    \context {
-        \Staff
-        \name StringBStaff
-        \type Engraver_group
-        \alias Staff
-        \accepts Voice
-    }
-
-    \context {
-        \Staff
-        \name StringCStaff
-        \type Engraver_group
-        \alias Staff
-        \accepts Voice
-    }
-
-    \context {
-        \Staff
-        \name StringDStaff
-        \type Engraver_group
-        \alias Staff
-        \accepts Voice
-    }
-
-    \context {
-        \StaffGroup
-        \name PerformerGroup
-        \type Engraver_group
-        \alias StaffGroup
-        \accepts StringAStaff
-        \accepts StringBStaff
-        \accepts StringCStaff
-        \accepts StringDStaff
+        \alias TabStaff
+        \accepts FingeringVoice
+        \accepts SpringVoice
     }
 
     \context {
         \Score
         \accepts TimeSignatureContext
-        \accepts PerformerGroup
+        \accepts PerformerStaff
         \remove Metronome_mark_engraver
     }
 }

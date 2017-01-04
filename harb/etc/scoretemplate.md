@@ -14,6 +14,9 @@ C#4-20c (274 Hz)
 D#3-6c (155 Hz)
 B2+7c (124 Hz)
 
+thus music must be always relative*.
+Chord diagrams will be used for spring drum movements/alterations
+
 Each string to have its own staff for fingering
 - regular note-heads are regular fingerings
 - harmonics have circles with a harmonic number in brackets if necessary,
@@ -26,3 +29,21 @@ Each string to have its own staff for fingering
   pull and X to dampen.
 
 - Bow, striking and plucking positions on bottom staff (bridge to start of f.b.)
+
+Score template should have:
+- Spring drum movements staff/voice
+- Brass mallet doublestop staff/Voice
+- Fingering/playing staves/voices
+
+And these should be postprocessed:
+- Spring drum staff/voice:
+- Brass mallet staff/voice:
+- Fingering/playing staves/voices:
+
+## VERSION 2:
+
+Hammered notes on a tab staff
+Brass mallet notes boxed or with a circle between the string lines
+Spring drum chords notes are highlighted vertically
+- minimumFret must be set to one fret above current spring drum position
+- restrainOpenStrings should always be ##t
