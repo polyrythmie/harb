@@ -43,8 +43,10 @@
     }
 
     \context {
-        \TabStaff
-        \remove Time_signature_engraver
+        \TabVoice
+        \name BrassVoice
+        \type Engraver_group
+        \alias TabVoice
     }
 
     \context {
@@ -54,6 +56,8 @@
         \alias TabStaff
         \accepts FingeringVoice
         \accepts SpringVoice
+        \remove Time_signature_engraver
+        % \override StaffSymbol.staff-space = #4 % This will be overridden whenever string tunings is set.
     }
 
     \context {

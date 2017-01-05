@@ -24,7 +24,7 @@ Each string to have its own staff for fingering
 - dampened strings have...
 
 - Brass mallet slides between two notes, ratchet sound on fingerboard, so circle
-  between two staves
+  between two staves, with vertical lines for ratchet sound (or other solution)
 - Spring drum is across four notes, so box notes, arrows on top for direction to
   pull and X to dampen.
 
@@ -43,7 +43,10 @@ And these should be postprocessed:
 ## VERSION 2:
 
 Hammered notes on a tab staff
+- Plucked notes with symbol over notehead, otherwise always hammered.
 Brass mallet notes boxed or with a circle between the string lines
+- Make this a rhythmic staff with indicators for fret positions and string-space
+  positions, then postprocess it as a new voice in the main staff that places its
+  notes in the correct staff spaces.
 Spring drum chords notes are highlighted vertically
 - minimumFret must be set to one fret above current spring drum position
-- restrainOpenStrings should always be ##t

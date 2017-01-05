@@ -18,10 +18,15 @@ class HarbScoreTemplate(ScoreTemplate):
             context_name='TabVoice',
             name='SpringVoice',
             )
+        brass_voice = scoretools.Voice(
+            context_name='TabVoice',
+            name='BrassVoice',
+            )
         performer_staff = scoretools.Staff(
             [
                 fingering_voice,
                 spring_voice,
+                brass_voice,
                 ],
             context_name='TabStaff',
             is_simultaneous=True,
@@ -34,6 +39,12 @@ class HarbScoreTemplate(ScoreTemplate):
         attach(perc_tag, performer_staff)
         string_tunings = indicatortools.LilyPondCommand("set Staff.stringTunings = \\stringTuning <b,,, ds,, cs, d,>")
         attach(string_tunings, performer_staff)
+        staff_space = indicatortools.LilyPondCommand("override Staff.StaffSymbol.staff-space = #3")
+        attach(staff_space, performer_staff)
+        tabFullNotation = indicatortools.LilyPondCommand("tabFullNotation")
+        attach(tabFullNotation, performer_staff)
+        restrainOpenStrings = indicatortools.LilyPondCommand("set TabStaff.restrainOpenStrings = ##t")
+        attach(restrainOpenStrings, performer_staff)
 
         time_signature_context = scoretools.Context(
             context_name='TimeSignatureContext',
