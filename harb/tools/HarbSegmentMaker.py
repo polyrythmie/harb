@@ -61,6 +61,10 @@ class HarbSegmentMaker(SegmentMaker):
             timespan_quantization=timespan_quantization,
             )
 
+    def configure_score(self):
+        # Score postprocessing here
+        SegmentMaker.configure_score(self)
+
 
     ### PUBLIC PROPERTIES ###
 

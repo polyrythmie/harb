@@ -14,21 +14,21 @@ class HarbScoreTemplate(ScoreTemplate):
             context_name='TabVoice',
             name='FingeringVoice',
             )
-        spring_voice = scoretools.Voice(
-            context_name='TabVoice',
-            name='SpringVoice',
-            )
-        brass_voice = scoretools.Voice(
-            context_name='TabVoice',
-            name='BrassVoice',
-            )
+        # spring_voice = scoretools.Voice(
+        #     context_name='SpringVoice',
+        #     name='SpringVoice',
+        #     )
+        # brass_voice = scoretools.Voice(
+        #     context_name='BrassVoice',
+        #     name='BrassVoice',
+        #     )
         performer_staff = scoretools.Staff(
             [
                 fingering_voice,
-                spring_voice,
-                brass_voice,
+                # spring_voice,
+                # brass_voice,
                 ],
-            context_name='TabStaff',
+            context_name='PerformerStaff',
             is_simultaneous=True,
             name='PerformerStaff',
             )
@@ -43,8 +43,13 @@ class HarbScoreTemplate(ScoreTemplate):
         attach(staff_space, performer_staff)
         tabFullNotation = indicatortools.LilyPondCommand("tabFullNotation")
         attach(tabFullNotation, performer_staff)
-        restrainOpenStrings = indicatortools.LilyPondCommand("set TabStaff.restrainOpenStrings = ##t")
-        attach(restrainOpenStrings, performer_staff)
+        minimumFret = indicatortools.LilyPondCommand("set minimumFret = #3")
+        attach(minimumFret, fingering_voice)
+        restrainOpenStrings = indicatortools.LilyPondCommand("set restrainOpenStrings = ##t")
+        attach(restrainOpenStrings, fingering_voice)
+        self._context_name_abbreviations['finger'] = fingering_voice.name
+        # self._context_name_abbreviations['spring'] = spring_voice.name
+        # self._context_name_abbreviations['brass'] = brass_voice.name
 
         time_signature_context = scoretools.Context(
             context_name='TimeSignatureContext',

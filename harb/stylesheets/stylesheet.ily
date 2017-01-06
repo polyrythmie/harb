@@ -1,6 +1,13 @@
 #(set-default-paper-size "letter" 'portrait)
 #(set-global-staff-size 12)
 
+springStems =
+#'((moveto 0 7)
+   (lineto 0 15)
+   (moveto 0 -10)
+   (lineto 0 -7)
+   (closepath))
+
 \header {
 }
 
@@ -29,6 +36,13 @@
     }
 
     \context {
+        \Voice
+        \type Engraver_group
+        \alias Voice
+        \remove Forbid_line_break_engraver
+    }
+
+    \context {
         \TabVoice
         \name FingeringVoice
         \type Engraver_group
@@ -36,17 +50,30 @@
     }
 
     \context {
-        \TabVoice
+        \Voice
         \name SpringVoice
         \type Engraver_group
-        \alias TabVoice
+        \alias Voice
+        \remove Rest_engraver
+        % Note heads
+        % Stem
+        % Beams, slurs, accents
+        % accidentals, bar lines
+		\override Beam.positions = #'(3 . 3)
+		\override NoteHead.Y-offset = -10
+		\override NoteHead.no-ledgers = ##t
+        \override NoteHead.stem-attachment = #'(0 . 0)
+		\override Stem.direction = 1
+        \override Stem.thickness = #0.5
+        %\override Stem.stencil = #ly:text-interface::print
+        %\override Stem.text = \markup { \path #0.1 #springStems }
     }
 
     \context {
-        \TabVoice
+        \Voice
         \name BrassVoice
         \type Engraver_group
-        \alias TabVoice
+        \alias Voice
     }
 
     \context {
@@ -56,6 +83,7 @@
         \alias TabStaff
         \accepts FingeringVoice
         \accepts SpringVoice
+        \accepts BrassVoice
         \remove Time_signature_engraver
         % \override StaffSymbol.staff-space = #4 % This will be overridden whenever string tunings is set.
     }
