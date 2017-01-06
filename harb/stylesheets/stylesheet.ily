@@ -33,6 +33,10 @@ springStems =
         \type Engraver_group
         \alias TabVoice
         \remove Forbid_line_break_engraver
+        \override Stem.direction = -1
+        \override Stem.length = #3
+        \override Beam.positions = #'(-3 . -3)
+        \override Beam.beam-thickness = #0.2
     }
 
     \context {
@@ -59,12 +63,12 @@ springStems =
         % Stem
         % Beams, slurs, accents
         % accidentals, bar lines
-		\override Beam.positions = #'(3 . 3)
+		%{\override Beam.positions = #'(3 . 3)
 		\override NoteHead.Y-offset = -10
 		\override NoteHead.no-ledgers = ##t
         \override NoteHead.stem-attachment = #'(0 . 0)
 		\override Stem.direction = 1
-        \override Stem.thickness = #0.5
+        \override Stem.thickness = #0.5%}
         %\override Stem.stencil = #ly:text-interface::print
         %\override Stem.text = \markup { \path #0.1 #springStems }
     }
@@ -85,7 +89,7 @@ springStems =
         \accepts SpringVoice
         \accepts BrassVoice
         \remove Time_signature_engraver
-        % \override StaffSymbol.staff-space = #4 % This will be overridden whenever string tunings is set.
+        \tabFullNotation
     }
 
     \context {
@@ -93,5 +97,6 @@ springStems =
         \accepts TimeSignatureContext
         \accepts PerformerStaff
         \remove Metronome_mark_engraver
+        \remove Bar_number_engraver
     }
 }

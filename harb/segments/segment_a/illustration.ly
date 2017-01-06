@@ -57,8 +57,7 @@
         \tag #'perc
         \context PerformerStaff = "PerformerStaff" <<
             \set Staff.stringTunings = \stringTuning <b,,, ds,, cs, d,>
-            \override Staff.StaffSymbol.staff-space = #3
-            \tabFullNotation
+            \override Staff.StaffSymbol.staff-space = #5
             \context TabVoice = "FingeringVoice" {
                 \set minimumFret = #3
                 \set restrainOpenStrings = ##t
