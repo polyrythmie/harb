@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
+from abjad import attach
+from abjad import detach
 from abjad import inspect_
+from abjad import iterate
 from abjad.tools import abctools
 from abjad.tools import lilypondfiletools
+from abjad.tools import spannertools
 from abjad.tools import systemtools
 from consort.tools import SegmentMaker
 from harb.tools import HarbScoreTemplate
@@ -31,11 +35,12 @@ class HarbSegmentMaker(SegmentMaker):
         permitted_time_signatures = (
             permitted_time_signatures or
             (
-                (2, 4),
-                (3, 4),
-                (4, 4),
                 (3, 8),
+                (4, 8),
                 (5, 8),
+                (6, 8),
+                (7, 8),
+                (8, 8),
                 )
             )
         score_template = (
@@ -74,6 +79,18 @@ class HarbSegmentMaker(SegmentMaker):
     @property
     def score_package_name(self):
         return 'harb'
+
+    def postprocess_ties(self):
+        for component in iterate(self.score).depth_first():
+            if not inspect_(component).has_spanner(spannertools.Tie):
+                continue
+            tie = inspect_(component).get_spanner(spannertools.Tie)
+            if component != tie[0]:
+                continue
+            components = tie.components
+            detach(tie)
+            tie = spannertools.Tie(use_messiaen_style_ties=False)
+            attach(tie, components)
 
     @staticmethod
     def rewrite_meters(

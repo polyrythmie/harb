@@ -17,6 +17,9 @@ deep_pure_fingering = consort.MusicSpecifier(
             counts=[1, 1, 1, 2, 1, -1],
             denominator=8,
             ),
+        tie_specifier=abjad.rhythmmakertools.TieSpecifier(
+            use_messiaen_style_ties=False,
+            ),
         ),
     pitch_handler=consort.AbsolutePitchHandler(
         pitch_specifier=consort.PitchSpecifier(

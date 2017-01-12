@@ -27,6 +27,7 @@ springStems =
         \consists Text_spanner_engraver
         \consists Time_signature_engraver
         \numericTimeSignature
+        \override TimeSignature.style = #'single-digit
     }
 
     \context {
@@ -38,6 +39,7 @@ springStems =
         \override Stem.length = #3
         \override Beam.positions = #'(-3 . -3)
         \override Beam.beam-thickness = #0.15
+        \override Tie.direction = 1
     }
 
     \context {
@@ -90,6 +92,7 @@ springStems =
         \override Rest.extra-offset = #'(0 . -2)
         \override TupletBracket.edge-height = #'(0.25 . 0.25)
         \override TupletBracket.positions = #'(-17 . -17)
+        \override Clef.font-size = #-12
     }
 
     \context {

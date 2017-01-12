@@ -37,6 +37,10 @@ class HarbScoreTemplate(ScoreTemplate):
             format_slot='before',
             )
         attach(perc_tag, performer_staff)
+        attach(
+            indicatortools.Clef('moderntab'),
+            performer_staff,
+            )
         minimumFret = indicatortools.LilyPondCommand("set minimumFret = #4")
         attach(minimumFret, fingering_voice)
 
