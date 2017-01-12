@@ -35,7 +35,7 @@ springStems =
         \remove Forbid_line_break_engraver
         \override Stem.direction = -1
         \override Stem.length = #3
-        \override Beam.positions = #'(-2 . -2)
+        \override Beam.positions = #'(-3 . -3)
         \override Beam.beam-thickness = #0.15
     }
 
@@ -43,14 +43,6 @@ springStems =
         \Voice
         \type Engraver_group
         \alias Voice
-        \remove Forbid_line_break_engraver
-    }
-
-    \context {
-        \TabVoice
-        \name FingeringVoice
-        \type Engraver_group
-        \alias TabVoice
         \remove Forbid_line_break_engraver
     }
 
@@ -94,6 +86,9 @@ springStems =
         \tabFullNotation
         stringTunings = \stringTuning <b,,, ds,, cs, d,>
         restrainOpenStrings = ##t
+        \override Rest.extra-offset = #'(0 . -2)
+        \override TupletBracket.edge-height = #'(0.25 . 0.25)
+        \override TupletBracket.positions = #'(-17 . -17)
     }
 
     \context {
@@ -105,6 +100,6 @@ springStems =
         proportionalNotationDuration = #(ly:make-moment 1/20)
         \override SpacingSpanner.uniform-stretching = ##t
         tupletFullLength = ##t
-        \override Stem.stemlet-length = #4
+        \override Stem.stemlet-length = #2
     }
 }

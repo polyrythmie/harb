@@ -8,7 +8,7 @@ segment_maker = harb.tools.HarbSegmentMaker(
     desired_duration_in_seconds=180,
     discard_final_silence=True,
     repeat=False,
-    tempo=indicatortools.Tempo((1, 4), 48),
+    tempo=indicatortools.Tempo((1, 8), 48),
     )
 
 segment_maker.add_setting(
