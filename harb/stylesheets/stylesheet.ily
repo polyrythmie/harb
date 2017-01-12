@@ -26,6 +26,7 @@ springStems =
         \consists Text_engraver
         \consists Text_spanner_engraver
         \consists Time_signature_engraver
+        \numericTimeSignature
     }
 
     \context {
