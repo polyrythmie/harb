@@ -1,5 +1,5 @@
-#(set-default-paper-size "letter" 'portrait)
-#(set-global-staff-size 12)
+#(set-default-paper-size "letter" 'landscape)
+#(set-global-staff-size 11)
 
 springStems =
 #'((moveto 0 7)
@@ -35,8 +35,8 @@ springStems =
         \remove Forbid_line_break_engraver
         \override Stem.direction = -1
         \override Stem.length = #3
-        \override Beam.positions = #'(-3 . -3)
-        \override Beam.beam-thickness = #0.2
+        \override Beam.positions = #'(-2 . -2)
+        \override Beam.beam-thickness = #0.15
     }
 
     \context {
@@ -92,6 +92,8 @@ springStems =
         \remove Time_signature_engraver
         \override StaffSymbol.staff-space = #5
         \tabFullNotation
+        stringTunings = \stringTuning <b,,, ds,, cs, d,>
+        restrainOpenStrings = ##t
     }
 
     \context {
@@ -100,5 +102,9 @@ springStems =
         \accepts PerformerStaff
         \remove Metronome_mark_engraver
         \remove Bar_number_engraver
+        proportionalNotationDuration = #(ly:make-moment 1/20)
+        \override SpacingSpanner.uniform-stretching = ##t
+        tupletFullLength = ##t
+        \override Stem.stemlet-length = #4
     }
 }

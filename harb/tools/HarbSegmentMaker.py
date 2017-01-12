@@ -33,6 +33,7 @@ class HarbSegmentMaker(SegmentMaker):
             (
                 (2, 4),
                 (3, 4),
+                (4, 4),
                 (3, 8),
                 (5, 8),
                 )

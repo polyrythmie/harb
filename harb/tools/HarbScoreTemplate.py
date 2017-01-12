@@ -37,13 +37,8 @@ class HarbScoreTemplate(ScoreTemplate):
             format_slot='before',
             )
         attach(perc_tag, performer_staff)
-        string_tunings = indicatortools.LilyPondCommand("set Staff.stringTunings = \\stringTuning <b,,, ds,, cs, d,>")
-        attach(string_tunings, performer_staff)
-
         minimumFret = indicatortools.LilyPondCommand("set minimumFret = #4")
         attach(minimumFret, fingering_voice)
-        restrainOpenStrings = indicatortools.LilyPondCommand("set restrainOpenStrings = ##t")
-        attach(restrainOpenStrings, fingering_voice)
 
         self._context_name_abbreviations['finger'] = fingering_voice.name
         # self._context_name_abbreviations['spring'] = spring_voice.name
