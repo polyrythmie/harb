@@ -51,6 +51,7 @@ springStems =
         \name FingeringVoice
         \type Engraver_group
         \alias TabVoice
+        \remove Forbid_line_break_engraver
     }
 
     \context {
@@ -89,6 +90,7 @@ springStems =
         \accepts SpringVoice
         \accepts BrassVoice
         \remove Time_signature_engraver
+        \override StaffSymbol.staff-space = #5
         \tabFullNotation
     }
 

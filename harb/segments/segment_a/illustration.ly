@@ -1,7 +1,7 @@
 % package "abjad" @ f44f42d [master] (2016-11-18 15:44:14)
 % package "ide" @ 0e44714 [master] (2016-12-11 13:26:38)
 % package "consort" @ 75ef8a8 [master] (2016-12-01 23:41:14)
-% package "harb" @ 4a31c86 [develop] (2017-01-04 19:08:06)
+% package "harb" @ 9b01951 [develop] (2017-01-06 18:09:05)
 
 \version "2.18.2"
 \language "english"
@@ -18,220 +18,312 @@
         \context TimeSignatureContext = "Time Signature Context" {
             {
                 \tempo 4=48
+                \time 5/8
+                s1 * 5/8
+            }
+            {
+                \time 3/8
+                s1 * 3/8
+            }
+            {
+                \time 5/8
+                s1 * 5/4
+            }
+            {
+                \time 3/8
+                s1 * 15/8
+            }
+            {
+                \time 5/8
+                s1 * 5/8
+            }
+            {
+                \time 3/8
+                s1 * 3/8
+            }
+            {
+                \time 5/8
+                s1 * 5/8
+            }
+            {
+                \time 3/8
+                s1 * 63/8
+            }
+            {
+                \time 3/4
+                s1 * 3/4
+            }
+            {
+                \time 5/8
+                s1 * 5/4
+            }
+            {
+                \time 3/8
+                s1 * 3/2
+            }
+            {
                 \time 2/4
                 s1 * 1/2
             }
             {
-                \time 3/4
-                s1 * 9/4
+                \time 3/8
+                s1 * 3/8
             }
             {
                 \time 5/8
                 s1 * 5/8
             }
             {
-                \time 3/4
-                s1 * 9/4
+                \time 3/8
+                s1 * 3/8
             }
             {
                 \time 5/8
                 s1 * 5/8
             }
             {
-                \time 3/4
-                s1 * 9/4
+                \time 3/8
+                s1 * 69/8
+            }
+            {
+                \time 2/4
+                s1 * 1/2
             }
             {
                 \time 5/8
                 s1 * 5/8
             }
             {
-                \time 3/4
-                s1 * 9/4
+                \time 3/8
+                s1 * 3/8
             }
             {
                 \time 5/8
                 s1 * 5/8
+            }
+            {
+                \time 3/8
+                s1 * 15/8
+            }
+            {
+                \time 2/4
+                s1 * 1/2
+            }
+            {
+                \time 5/8
+                s1 * 5/4
+            }
+            {
+                \time 3/8
+                s1 * 3/8
             }
         }
         \tag #'perc
         \context PerformerStaff = "PerformerStaff" <<
             \set Staff.stringTunings = \stringTuning <b,,, ds,, cs, d,>
-            \override Staff.StaffSymbol.staff-space = #5
             \context TabVoice = "FingeringVoice" {
-                \set minimumFret = #3
+                \set minimumFret = #4
                 \set restrainOpenStrings = ##t
                 {
                     % [FingeringVoice] Measure 1
                     {
                         b,,4
-                        cs,4
-                    }
-                }
-                {
-                    % [FingeringVoice] Measure 2
-                    {
-                        r16
-                    }
-                }
-                {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 11/10 {
-                        b,8 [
+                        cs,8 [
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
-                        b,,8
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        cs,8
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        b,8
+                        cs,8 \repeatTie
                         \set stemLeftBeamCount = 1
                         b,,8 ]
                     }
+                    % [FingeringVoice] Measure 2
+                    {
+                        b,,8 \repeatTie
+                        b,4
+                    }
                     % [FingeringVoice] Measure 3
-                    {
-                        cs,16
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 5/7 {
+                        b,4 \repeatTie
+                        cs,8 [
+                        \set stemLeftBeamCount = 1
+                        \set stemRightBeamCount = 1
+                        cs,8 \repeatTie
+                        \set stemLeftBeamCount = 1
+                        \set stemRightBeamCount = 1
+                        r8
+                        \set stemLeftBeamCount = 1
+                        \set stemRightBeamCount = 1
+                        r8
+                        \set stemLeftBeamCount = 1
+                        b,,8 ]
                     }
-                }
-                {
-                    {
-                        r16
-                        r16
-                    }
-                }
-                {
-                    {
-                        b,16
-                        b,4.. \repeatTie
-                    }
-                }
-                {
-                    {
-                        r16
-                    }
-                }
-                {
                     % [FingeringVoice] Measure 4
                     {
-                        b,,4
+                        b,,8 \repeatTie
                         cs,4
-                        gs,4
+                        b,,4
                     }
                 }
                 {
                     % [FingeringVoice] Measure 5
                     {
-                        r8
+                        R1 * 15/8
+                    }
+                    % [FingeringVoice] Measure 10
+                    {
+                        R1 * 5/8
+                    }
+                }
+                {
+                    % [FingeringVoice] Measure 11
+                    {
+                        b,4
+                        cs,8
+                    }
+                    % [FingeringVoice] Measure 12
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 5/7 {
+                        cs,8 \repeatTie
+                        b,,4
+                        b,,4 \repeatTie
+                        cs,4
+                    }
+                }
+                {
+                    % [FingeringVoice] Measure 13
+                    {
+                        r4
                     }
                 }
                 {
                     {
-                        b,,8 [
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
+                        b,,8
+                    }
+                }
+                {
+                    % [FingeringVoice] Measure 14
+                    {
+                        R1 * 15/2
+                    }
+                    % [FingeringVoice] Measure 34
+                    {
+                        R1 * 3/4
+                    }
+                }
+                {
+                    % [FingeringVoice] Measure 35
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 5/7 {
+                        gs,4
                         cs,8
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        gs,8
+                        cs,4 \repeatTie
+                        cs,8 \repeatTie [
                         \set stemLeftBeamCount = 1
                         b,,8 ]
                     }
-                }
-                {
-                    % [FingeringVoice] Measure 6
+                    % [FingeringVoice] Measure 36
                     {
-                        r16
+                        b,,8 \repeatTie
+                        r4
+                        cs,4
                     }
                 }
                 {
+                    % [FingeringVoice] Measure 37
                     {
-                        cs,8.
-                        cs,2 \repeatTie
+                        R1 * 3/2
                     }
-                    % [FingeringVoice] Measure 7
+                    % [FingeringVoice] Measure 41
                     {
-                        gs,16
-                    }
-                }
-                {
-                    {
-                        r16
-                        r16
+                        R1 * 1/2
                     }
                 }
                 {
+                    % [FingeringVoice] Measure 42
                     {
-                        b,,16 [
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        b,,8. \repeatTie
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 2
-                        cs,16
-                        \set stemLeftBeamCount = 1
-                        cs,8. \repeatTie ]
+                        cs,4.
+                    }
+                    % [FingeringVoice] Measure 43
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 5/9 {
+                        cs,8 \repeatTie
+                        b,,4
+                        r4
+                        f,8 [
+                        f,8 \repeatTie ]
+                        cs,4
+                    }
+                    % [FingeringVoice] Measure 44
+                    {
+                        b,,4
+                        f,8
+                    }
+                    % [FingeringVoice] Measure 45
+                    {
+                        f,4. \repeatTie
+                        cs,4
                     }
                 }
                 {
+                    % [FingeringVoice] Measure 46
                     {
-                        r16
+                        R1 * 69/8
+                    }
+                    % [FingeringVoice] Measure 69
+                    {
+                        R1 * 1/2
                     }
                 }
                 {
-                    % [FingeringVoice] Measure 8
-                    {
-                        gs,8 [
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
+                    % [FingeringVoice] Measure 70
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 5/9 {
+                        b,,4
+                        r8 [
+                        r8 ]
+                        f,4
+                        cs,4
                         b,,8
+                    }
+                    % [FingeringVoice] Measure 71
+                    {
+                        b,,8 \repeatTie
+                        f,4
+                    }
+                    % [FingeringVoice] Measure 72
+                    {
+                        f,4 \repeatTie
+                        cs,8 [
                         \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        cs,8
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        b,,8
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        b,,8
-                        \set stemLeftBeamCount = 1
-                        f,8 ]
+                        cs,8 \repeatTie ]
                     }
                 }
                 {
-                    % [FingeringVoice] Measure 9
                     {
                         r8
                     }
                 }
                 {
-                    {
-                        cs,4
-                        cs,4 \repeatTie
-                    }
-                }
-                {
-                    % [FingeringVoice] Measure 10
-                    {
-                        r16
-                    }
-                }
-                {
+                    % [FingeringVoice] Measure 73
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 11/8 {
+                    \times 3/5 {
+                        r8
                         b,,4
-                        b,,4
-                    }
-                    % [FingeringVoice] Measure 11
-                    {
-                        f,16
+                        f,4
                     }
                 }
                 {
+                    % [FingeringVoice] Measure 74
                     {
-                        r16
-                        r16
+                        R1 * 3/2
+                    }
+                    % [FingeringVoice] Measure 78
+                    {
+                        R1 * 1/2
+                    }
+                    % [FingeringVoice] Measure 79
+                    {
+                        r4
                     }
                 }
                 {
@@ -239,106 +331,26 @@
                         cs,8 [
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
-                        b,,8
+                        cs,8 \repeatTie
                         \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        b,,8
-                        \set stemLeftBeamCount = 1
-                        f,8 ]
+                        b,,8 ]
                     }
-                }
-                {
+                    % [FingeringVoice] Measure 80
                     {
-                        r16
-                    }
-                }
-                {
-                    % [FingeringVoice] Measure 12
-                    {
-                        cs,2.
-                    }
-                }
-                {
-                    % [FingeringVoice] Measure 13
-                    {
-                        r8
-                    }
-                }
-                {
-                    {
-                        b,,4
-                        b,,4
-                    }
-                }
-                {
-                    % [FingeringVoice] Measure 14
-                    {
-                        r16
-                    }
-                }
-                {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 11/10 {
-                        f,8 [
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        cs,8
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        b,,8
-                        \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        b,,8
-                        \set stemLeftBeamCount = 1
-                        f,8 ]
-                    }
-                    % [FingeringVoice] Measure 15
-                    {
-                        cs,16
-                    }
-                }
-                {
-                    {
-                        r16
-                        r16
-                    }
-                }
-                {
-                    {
-                        b,,16
-                        b,,4.. \repeatTie
-                    }
-                }
-                {
-                    {
-                        r16
-                    }
-                }
-                {
-                    % [FingeringVoice] Measure 16
-                    {
-                        cs,4
+                        b,,8 \repeatTie
                         f,4
                         cs,4
                     }
-                }
-                {
-                    % [FingeringVoice] Measure 17
-                    {
-                        r8
-                    }
-                }
-                {
-                    {
-                        f,8 [
+                    % [FingeringVoice] Measure 81
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        cs,4 \repeatTie
+                        b,,8 [
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
-                        cs,8
+                        b,,8 \repeatTie
                         \set stemLeftBeamCount = 1
-                        \set stemRightBeamCount = 1
-                        f,8
-                        \set stemLeftBeamCount = 1
-                        cs,8 ]
+                        r8 ]
                         \bar "|."
                     }
                 }
