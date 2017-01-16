@@ -10,6 +10,6 @@ deep_timespan_maker = consort.TaleaTimespanMaker(
     playing_groupings=(3, 2, 3),
     silence_talea=abjad.rhythmmakertools.Talea(
         counts=(10, 8, 8, 4, 2),
-        denominator=4,
+        denominator=8,
         ),
     )

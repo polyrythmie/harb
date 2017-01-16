@@ -18,25 +18,20 @@ class HarbScoreTemplate(ScoreTemplate):
         #     context_name='SpringVoice',
         #     name='SpringVoice',
         #     )
-        # brass_voice = scoretools.Voice(
-        #     context_name='BrassVoice',
-        #     name='BrassVoice',
-        #     )
+        brass_voice = scoretools.Voice(
+            context_name='BrassVoice',
+            name='BrassVoice',
+            )
         performer_staff = scoretools.Staff(
             [
                 fingering_voice,
                 # spring_voice,
-                # brass_voice,
+                brass_voice,
                 ],
             context_name='PerformerStaff',
             is_simultaneous=True,
             name='PerformerStaff',
             )
-        perc_tag = indicatortools.LilyPondCommand(
-            name="tag #'perc",
-            format_slot='before',
-            )
-        attach(perc_tag, performer_staff)
         attach(
             indicatortools.Clef('moderntab'),
             performer_staff,
@@ -46,17 +41,12 @@ class HarbScoreTemplate(ScoreTemplate):
 
         self._context_name_abbreviations['finger'] = fingering_voice.name
         # self._context_name_abbreviations['spring'] = spring_voice.name
-        # self._context_name_abbreviations['brass'] = brass_voice.name
+        self._context_name_abbreviations['brass'] = brass_voice.name
 
         time_signature_context = scoretools.Context(
             context_name='TimeSignatureContext',
             name='Time Signature Context',
             )
-        time_tag = indicatortools.LilyPondCommand(
-            name="tag #'time",
-            format_slot='before',
-            )
-        attach(time_tag, time_signature_context)
 
         score = scoretools.Score(
             [

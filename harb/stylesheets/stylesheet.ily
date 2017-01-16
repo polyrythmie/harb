@@ -12,6 +12,16 @@ springStems =
 }
 
 \paper {
+    evenFooterMarkup = \markup \fill-line { " " }
+    evenHeaderMarkup = \markup \fill-line { " " }
+    oddFooterMarkup = \markup \fill-line { " " }
+    oddHeaderMarkup = \markup \fill-line { " " }
+    system-system-spacing = #'(
+        (basic-distance . 0)
+        (minimum-distance . 30)
+        (padding . 0)
+        (stretchability . 0)
+    )
 }
 
 \layout {
@@ -27,6 +37,14 @@ springStems =
         \consists Text_spanner_engraver
         \consists Time_signature_engraver
         \numericTimeSignature
+        \override BarNumber.Y-extent = #'(0 . 0)
+        \override BarNumber.Y-offset = 0
+        \override BarNumber.extra-offset = #'(-1 . 3)
+        \override BarNumber.font-size = 1
+        \override TimeSignature.X-extent = #'(0 . 0)
+        \override TimeSignature.Y-offset = 0
+        \override TimeSignature.extra-offset = #'(0 . 4)
+        \override TimeSignature.font-size = 2
         \override TimeSignature.style = #'single-digit
     }
 
@@ -35,38 +53,14 @@ springStems =
         \type Engraver_group
         \alias TabVoice
         \remove Forbid_line_break_engraver
+        \remove Multi_measure_rest_engraver
+        \override Rest.Y-extent = #'(0 . 0)
+        \override Rest.extra-offset = #'(0 . -2)
         \override Stem.direction = -1
         \override Stem.length = #3
-        \override Beam.positions = #'(-3 . -3)
+        \override Beam.positions = #'(-2.75 . -2.75)
         \override Beam.beam-thickness = #0.15
         \override Tie.direction = 1
-    }
-
-    \context {
-        \Voice
-        \type Engraver_group
-        \alias Voice
-        \remove Forbid_line_break_engraver
-    }
-
-    \context {
-        \Voice
-        \name SpringVoice
-        \type Engraver_group
-        \alias Voice
-        \remove Rest_engraver
-        % Note heads
-        % Stem
-        % Beams, slurs, accents
-        % accidentals, bar lines
-		%{\override Beam.positions = #'(3 . 3)
-		\override NoteHead.Y-offset = -10
-		\override NoteHead.no-ledgers = ##t
-        \override NoteHead.stem-attachment = #'(0 . 0)
-		\override Stem.direction = 1
-        \override Stem.thickness = #0.5%}
-        %\override Stem.stencil = #ly:text-interface::print
-        %\override Stem.text = \markup { \path #0.1 #springStems }
     }
 
     \context {
@@ -74,6 +68,14 @@ springStems =
         \name BrassVoice
         \type Engraver_group
         \alias Voice
+        \remove Forbid_line_break_engraver
+        \remove Multi_measure_rest_engraver
+        \override Rest.Y-extent = #'(0 . 0)
+        \override Rest.extra-offset = #'(0 . 2)
+        \override Stem.direction = 1
+        \override Stem.length = #3
+        \override Beam.positions = #'(2.75 . 2.75)
+        \override Beam.beam-thickness = #0.15
     }
 
     \context {
@@ -85,13 +87,14 @@ springStems =
         \accepts SpringVoice
         \accepts BrassVoice
         \remove Time_signature_engraver
+        \remove Rest_collision_engraver
+        \remove Multi_measure_rest_engraver
         \override StaffSymbol.staff-space = #5
         \tabFullNotation
         stringTunings = \stringTuning <b,,, ds,, cs, d,>
         restrainOpenStrings = ##t
-        \override Rest.extra-offset = #'(0 . -2)
         \override TupletBracket.edge-height = #'(0.25 . 0.25)
-        \override TupletBracket.positions = #'(-17 . -17)
+        \override TupletBracket.positions = #'(-15.5 . -15.5)
         \override Clef.font-size = #-12
     }
 
@@ -101,9 +104,11 @@ springStems =
         \accepts PerformerStaff
         \remove Metronome_mark_engraver
         \remove Bar_number_engraver
-        proportionalNotationDuration = #(ly:make-moment 1/20)
         \override SpacingSpanner.uniform-stretching = ##t
+        \override SpacingSpanner.strict-note-spacing = ##f
+        proportionalNotationDuration = #(ly:make-moment 1/20)
         tupletFullLength = ##t
         \override Stem.stemlet-length = #2
+        autoBeaming = ##f
     }
 }

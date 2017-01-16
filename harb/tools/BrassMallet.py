@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
+from abjad import inspect_
 from abjad.tools.spannertools.Spanner import Spanner
+from abjad.tools import lilypondnametools
+from abjad.tools import schemetools
+from abjad.tools import scoretools
+from abjad.tools import markuptools #unnecessary
+from harb.tools.BrassMalletContactPoint import BrassMalletContactPoint
 
 class BrassMallet(Spanner):
     r'''Brass mallet spanner.
-    
+
     '''
 
     ### CLASS VARIABLES ###
@@ -19,7 +25,60 @@ class BrassMallet(Spanner):
     ### PRIVATE METHODS ###
 
     def _get_annotations(self, leaf):
-        pass
+        inspector = inspect_(leaf)
+        brass_mallet_contact_point = None
+        prototype = BrassMalletContactPoint
+        if inspector.has_indicator(prototype):
+            brass_mallet_contact_point = inspector.get_indicator(prototype)
+        return brass_mallet_contact_point
 
     def _get_lilypond_format_bundle(self, leaf):
-        pass
+        lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
+        brass_mallet_contact_point = self._get_annotations(leaf)
+        if brass_mallet_contact_point is None:
+            return lilypond_format_bundle
+        self._make_brass_mallet_contact_point_overrides(
+            brass_mallet_contact_point=brass_mallet_contact_point,
+            lilypond_format_bundle=lilypond_format_bundle,
+            )
+        if self._next_leaf_has_brass_mallet_contact_point(leaf):
+            lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+        return lilypond_format_bundle
+
+    def _make_brass_mallet_contact_point_overrides(
+        self,
+        brass_mallet_contact_point,
+        lilypond_format_bundle=None,
+        ):
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='NoteHead',
+            is_once=True,
+            property_path='stencil',
+            value=schemetools.Scheme('ly:text-interface::print'),
+            )
+        string = override_.override_string
+        lilypond_format_bundle.grob_overrides.append(string)
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='NoteHead',
+            is_once=True,
+            property_path='text',
+            value=brass_mallet_contact_point.markup,
+            )
+        string = override_.override_string
+        lilypond_format_bundle.grob_overrides.append(string)
+
+    def _next_leaf_has_brass_mallet_contact_point(self, leaf):
+        if self._is_my_last_leaf(leaf):
+            return False
+        prototype = (
+            scoretools.MultimeasureRest,
+            scoretools.Rest,
+            scoretools.Skip,
+            )
+        next_leaf = inspect_(leaf).get_leaf(1)
+        if next_leaf is None or isinstance(next_leaf, prototype):
+            return False
+        next_contact_point = inspect_(next_leaf).get_indicator(BrassMalletContactPoint)
+        if next_contact_point is None:
+            return False
+        return True
