@@ -57,7 +57,7 @@ springStems =
         \override Rest.Y-extent = #'(0 . 0)
         \override Rest.extra-offset = #'(0 . -2)
         \override Stem.direction = -1
-        \override Stem.length = #3
+        \override Stem.length = #2.5
         \override Beam.positions = #'(-2.75 . -2.75)
         \override Beam.beam-thickness = #0.15
         \override Tie.direction = 1
@@ -70,12 +70,20 @@ springStems =
         \alias Voice
         \remove Forbid_line_break_engraver
         \remove Multi_measure_rest_engraver
+        \remove Tie_engraver
+        \override NoteHead.extra-offset = #'(0 . -0.1)
         \override Rest.Y-extent = #'(0 . 0)
         \override Rest.extra-offset = #'(0 . 2)
         \override Stem.direction = 1
-        \override Stem.length = #3
+        \override Stem.length = #2.5
         \override Beam.positions = #'(2.75 . 2.75)
         \override Beam.beam-thickness = #0.15
+        \override Glissando.bound-details = #'((right (attach-dir . -1)
+                                                      (end-on-accidental . #f)
+                                                      (padding . 0.4))
+                                               (left (attach-dir . 1)
+                                                     (padding . 0.4)
+                                                     (start-at-dot . #f)))
     }
 
     \context {
@@ -89,6 +97,7 @@ springStems =
         \remove Time_signature_engraver
         \remove Rest_collision_engraver
         \remove Multi_measure_rest_engraver
+        \override BarLine.hair-thickness = #1
         \override StaffSymbol.staff-space = #5
         \tabFullNotation
         stringTunings = \stringTuning <b,,, ds,, cs, d,>
@@ -110,5 +119,6 @@ springStems =
         tupletFullLength = ##t
         \override Stem.stemlet-length = #2
         autoBeaming = ##f
+        \override NoteColumn.ignore-collision = ##t
     }
 }

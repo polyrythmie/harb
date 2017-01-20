@@ -1,7 +1,7 @@
 % package "abjad" @ f44f42d [master] (2016-11-18 15:44:14)
 % package "ide" @ 0e44714 [master] (2016-12-11 13:26:38)
 % package "consort" @ 75ef8a8 [master] (2016-12-01 23:41:14)
-% package "harb" @ 8a62a4e [develop] (2017-01-12 17:49:34)
+% package "harb" @ 0455755 [develop] (2017-01-16 18:50:38)
 
 \version "2.18.2"
 \language "english"
@@ -340,56 +340,90 @@
                 {
                     % [BrassVoice] Measure 1
                     {
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         5
                             }
                         c'1 \glissando
                     }
                     % [BrassVoice] Measure 2
                     {
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    10
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        10
                             }
-                        c'4. ~ \glissando
+                        c'4. ~
+                        \once \override Glissando.bound-details.left.Y = 0
+                        \once \override Glissando.bound-details.right.Y = 0
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    15
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        15
                             }
-                        c'4 \glissando
+                        c'8 \glissando [
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        21
+                            }
+                        \set stemLeftBeamCount = 1
+                        c'8 ]
                     }
                     % [BrassVoice] Measure 3
                     {
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    21
-                            }
-                        c'4. \glissando
-                        \once \override NoteHead.stencil = #ly:text-interface::print
-                        \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         8
                             }
-                        c'4
+                        c'4. ~ \glissando
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-3
+                                        5
+                            }
+                        c'8 \glissando [
+                        \once \override NoteHead.Y-offset = 5
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        10
+                            }
+                        \set stemLeftBeamCount = 1
+                        c'8 ]
                     }
                 }
                 {
@@ -405,37 +439,31 @@
                 {
                     % [BrassVoice] Measure 6
                     {
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         8
                             }
                         c'4. \glissando
                     }
                     % [BrassVoice] Measure 7
                     {
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         5
                             }
-                        c'2. \glissando
-                        \once \override NoteHead.stencil = #ly:text-interface::print
-                        \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    10
-                            }
-                        c'4
+                        c'1
                     }
                 }
                 {
@@ -449,73 +477,84 @@
                     {
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    21
-                            }
-                        c'2 ~ \glissando
-                        \once \override NoteHead.stencil = #ly:text-interface::print
-                        \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-4
+                                        21
+                            }
+                        c'2
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-3
                                         8
                             }
                         c'8 \glissando
                     }
                     {
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         5
                             }
                         c'8 ~ \glissando
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    10
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        10
                             }
-                        c'4 \glissando
+                        c'4
                     }
                     % [BrassVoice] Measure 10
                     {
+                        \once \override Glissando.bound-details.left.Y = 0
+                        \once \override Glissando.bound-details.right.Y = 0
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    15
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        15
                             }
                         c'4 \glissando
                     }
                     {
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    21
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        21
                             }
-                        c'8 \glissando
+                        c'8
                     }
                     % [BrassVoice] Measure 11
                     {
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         8
                             }
                         c'4
@@ -534,12 +573,15 @@
                 {
                     % [BrassVoice] Measure 13
                     {
+                        \once \override Glissando.bound-details.left.Y = 0
+                        \once \override Glissando.bound-details.right.Y = 0
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    15
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        15
                             }
                         c'1 \glissando
                     }
@@ -547,53 +589,73 @@
                     {
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    21
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        21
                             }
-                        c'4. \glissando
+                        c'4.
                     }
                     % [BrassVoice] Measure 15
                     {
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         8
                             }
                         c'4 \glissando
                     }
                     {
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         5
                             }
                         c'8 ~ \glissando
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    10
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        10
                             }
-                        c'4 \glissando
+                        c'4 ~
+                        \once \override Glissando.bound-details.left.Y = 0
+                        \once \override Glissando.bound-details.right.Y = 0
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    15
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        15
                             }
-                        c'4
+                        c'8 \glissando [
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        21
+                            }
+                        \set stemLeftBeamCount = 1
+                        c'8 ]
                     }
                 }
                 {
@@ -605,33 +667,28 @@
                 {
                     % [BrassVoice] Measure 17
                     {
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    10
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        10
                             }
-                        c'4. \glissando
+                        c'4.
                     }
                     % [BrassVoice] Measure 18
                     {
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    15
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        15
                             }
-                        c'2. \glissando
-                        \once \override NoteHead.stencil = #ly:text-interface::print
-                        \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    21
-                            }
-                        c'4
+                        c'1
                     }
                 }
                 {
@@ -642,66 +699,99 @@
                 }
                 {
                     {
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         5
                             }
                         c'8 ~ \glissando
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    10
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        10
                             }
-                        c'2 \glissando
+                        c'4 ~
+                        \once \override Glissando.bound-details.left.Y = 0
+                        \once \override Glissando.bound-details.right.Y = 0
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        15
+                            }
+                        c'8 \glissando [
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        21
+                            }
+                        \set stemLeftBeamCount = 1
+                        c'8 ]
                     }
                     % [BrassVoice] Measure 20
                     {
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    15
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-3
+                                        8
                             }
                         c'4. ~ \glissando
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    21
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-3
+                                        5
                             }
-                        c'4 \glissando
+                        c'8 \glissando [
+                        \once \override NoteHead.Y-offset = 5
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        10
+                            }
+                        \set stemLeftBeamCount = 1
+                        c'8 ]
                     }
                     % [BrassVoice] Measure 21
                     {
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
-                                        8
+                                        #-4
+                                        15
                             }
-                        c'8 \glissando
-                        \once \override NoteHead.stencil = #ly:text-interface::print
-                        \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
-                                \circle
-                                    \fontsize
-                                        #-2
-                                        5
-                            }
-                        c'4
+                        c'4.
                     }
                 }
                 {
@@ -720,79 +810,136 @@
                 }
                 {
                     {
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         8
                             }
                         c'8 ~ \glissando
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-3
                                         5
                             }
-                        c'2 \glissando
+                        c'4 ~ \glissando
+                        \once \override NoteHead.Y-offset = 5
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        10
+                            }
+                        c'8 [
+                        \once \override Glissando.bound-details.left.Y = 0
+                        \once \override Glissando.bound-details.right.Y = 0
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        15
+                            }
+                        \set stemLeftBeamCount = 1
+                        c'8 ] \glissando
                     }
                     % [BrassVoice] Measure 24
                     {
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    10
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        21
                             }
-                        c'4. \glissando
+                        c'4.
                     }
                     % [BrassVoice] Measure 25
                     {
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    15
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-3
+                                        8
+                            }
+                        c'4. ~ \glissando
+                        \once \override Glissando.bound-details.left.Y = 5
+                        \once \override Glissando.bound-details.right.Y = 5
+                        \once \override NoteHead.Y-offset = 5
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-3
+                                        5
+                            }
+                        c'8 \glissando [
+                        \once \override NoteHead.Y-offset = 5
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        10
+                            }
+                        \set stemLeftBeamCount = 1
+                        c'8 ]
+                    }
+                    % [BrassVoice] Measure 26
+                    {
+                        \once \override Glissando.bound-details.left.Y = 0
+                        \once \override Glissando.bound-details.right.Y = 0
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-4
+                                        15
                             }
                         c'4. ~ \glissando
                         \once \override NoteHead.stencil = #ly:text-interface::print
                         \once \override NoteHead.text = \markup {
-                            \circle
-                                \fontsize
-                                    #-3
-                                    21
-                            }
-                        c'4 \glissando
-                    }
-                    % [BrassVoice] Measure 26
-                    {
-                        \once \override NoteHead.stencil = #ly:text-interface::print
-                        \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
+                            \whiteout
                                 \circle
                                     \fontsize
-                                        #-2
+                                        #-4
+                                        21
+                            }
+                        c'8 [
+                        \once \override NoteHead.Y-offset = 5
+                        \once \override NoteHead.stencil = #ly:text-interface::print
+                        \once \override NoteHead.text = \markup {
+                            \whiteout
+                                \circle
+                                    \fontsize
+                                        #-3
                                         8
                             }
-                        c'4. \glissando
-                        \once \override NoteHead.stencil = #ly:text-interface::print
-                        \once \override NoteHead.text = \markup {
-                            \override
-                                #'(circle-padding . 0.4)
-                                \circle
-                                    \fontsize
-                                        #-2
-                                        5
-                            }
-                        c'4
+                        \set stemLeftBeamCount = 1
+                        c'8 ]
                         \bar "|."
                     }
                 }

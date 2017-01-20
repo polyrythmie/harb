@@ -41,8 +41,11 @@ class BrassMallet(Spanner):
             brass_mallet_contact_point=brass_mallet_contact_point,
             lilypond_format_bundle=lilypond_format_bundle,
             )
-        if self._next_leaf_has_brass_mallet_contact_point(leaf):
-            lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+        if self._gliss_to_next_brass_mallet_contact_point(leaf):
+            self._make_brass_mallet_glissando_overrides(
+                brass_mallet_contact_point=brass_mallet_contact_point,
+                lilypond_format_bundle=lilypond_format_bundle,
+                )
         return lilypond_format_bundle
 
     def _make_brass_mallet_contact_point_overrides(
@@ -50,6 +53,16 @@ class BrassMallet(Spanner):
         brass_mallet_contact_point,
         lilypond_format_bundle=None,
         ):
+        if brass_mallet_contact_point.string_space != 2:
+            y_offset = brass_mallet_contact_point.string_space * 5 - 10
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='NoteHead',
+                is_once=True,
+                property_path='Y-offset',
+                value=y_offset,
+                )
+            string = override_.override_string
+            lilypond_format_bundle.grob_overrides.append(string)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='NoteHead',
             is_once=True,
@@ -67,7 +80,31 @@ class BrassMallet(Spanner):
         string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(string)
 
-    def _next_leaf_has_brass_mallet_contact_point(self, leaf):
+    def _make_brass_mallet_glissando_overrides(
+        self,
+        brass_mallet_contact_point,
+        lilypond_format_bundle=None,
+        ):
+        value = brass_mallet_contact_point.string_space * 5 - 10
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='Glissando',
+            is_once=True,
+            property_path='bound-details.left.Y',
+            value=value,
+            )
+        string = override_.override_string
+        lilypond_format_bundle.grob_overrides.append(string)
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='Glissando',
+            is_once=True,
+            property_path='bound-details.right.Y',
+            value=value,
+            )
+        string = override_.override_string
+        lilypond_format_bundle.grob_overrides.append(string)
+        lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+
+    def _gliss_to_next_brass_mallet_contact_point(self, leaf):
         if self._is_my_last_leaf(leaf):
             return False
         prototype = (
@@ -81,4 +118,7 @@ class BrassMallet(Spanner):
         next_contact_point = inspect_(next_leaf).get_indicator(BrassMalletContactPoint)
         if next_contact_point is None:
             return False
-        return True
+        current_contact_point = inspect_(leaf).get_indicator(BrassMalletContactPoint)
+        if next_contact_point.string_space == current_contact_point.string_space:
+            return True
+        return False

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import rhythmmakertools
 from abjad.tools import selectortools
+from abjad.tools import scoretools
 import consort
 import harb
 from abjad.tools import indicatortools
@@ -27,26 +28,47 @@ segment_maker.add_setting(
         attachment_handler=consort.AttachmentHandler(
             brass_contact_points=consort.AttachmentExpression(
                 attachments=(
-                    harb.tools.BrassMalletContactPoint(5),
-                    harb.tools.BrassMalletContactPoint(10),
-                    harb.tools.BrassMalletContactPoint(15),
-                    harb.tools.BrassMalletContactPoint(21),
-                    harb.tools.BrassMalletContactPoint(8),
+                    harb.tools.BrassMalletContactPoint(5, 3),
+                    harb.tools.BrassMalletContactPoint(10, 3),
+                    harb.tools.BrassMalletContactPoint(15, 2),
+                    harb.tools.BrassMalletContactPoint(21, 2),
+                    harb.tools.BrassMalletContactPoint(8, 3),
                     ),
-                selector=selectortools.Selector().by_leaf().flatten(),
+                selector=selectortools.Selector().by_class(prototype=scoretools.Note, flatten=True),
                 ),
             brass_mallet_spanner=harb.tools.BrassMallet(),
             ),
         rhythm_maker=consort.CompositeRhythmMaker(
-            last=rhythmmakertools.IncisedRhythmMaker(
-                incise_specifier=rhythmmakertools.InciseSpecifier(
-                    prefix_counts=[0],
-                    suffix_talea=[1],
-                    suffix_counts=[1],
-                    talea_denominator=4,
+            # last=rhythmmakertools.IncisedRhythmMaker(
+            #     incise_specifier=rhythmmakertools.InciseSpecifier(
+            #         prefix_counts=[0],
+            #         suffix_talea=[1],
+            #         suffix_counts=[1],
+            #         talea_denominator=4,
+            #         ),
+            #     beam_specifier=rhythmmakertools.BeamSpecifier(
+            #         beam_divisions_together=False,
+            #         beam_each_division=False,
+            #         ),
+            #     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+            #         spell_metrically=False,
+            #         ),
+            #     tie_specifier=rhythmmakertools.TieSpecifier(
+            #         strip_ties=True,
+            #         ),
+            #     ),
+            default=rhythmmakertools.NoteRhythmMaker(
+                beam_specifier=rhythmmakertools.BeamSpecifier(
+                    beam_divisions_together=False,
+                    beam_each_division=False,
+                    ),
+                duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                    spell_metrically=False,
+                    ),
+                tie_specifier=rhythmmakertools.TieSpecifier(
+                    strip_ties=True,
                     ),
                 ),
-            default=rhythmmakertools.NoteRhythmMaker(),
             ),
         ),
     )
