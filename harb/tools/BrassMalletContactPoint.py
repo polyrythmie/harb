@@ -11,6 +11,7 @@ class BrassMalletContactPoint(AbjadValueObject):
     __slots__ = (
         '_contact_point',
         '_string_space',
+        '_fret_noise',
         '_default_scope',
         )
 
@@ -20,11 +21,14 @@ class BrassMalletContactPoint(AbjadValueObject):
         self,
         contact_point,
         string_space,
+        fret_noise,
         ):
         assert 1 <= contact_point <= 24 # number of bass frets is variable.
         self._contact_point = contact_point
         assert 1 <= string_space <= 3
         self._string_space = string_space
+        assert isinstance(fret_noise, bool)
+        self._fret_noise = fret_noise
         self._default_scope = None
 
     ### PUBLIC PROPERTIES
@@ -32,6 +36,10 @@ class BrassMalletContactPoint(AbjadValueObject):
     @property
     def contact_point(self):
         return self._contact_point
+
+    @property
+    def fret_noise(self):
+        return self._fret_noise
 
     @property
     def string_space(self):

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad import inspect_
 from abjad.tools.spannertools.Spanner import Spanner
+from abjad.tools import durationtools
 from abjad.tools import lilypondnametools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
@@ -44,6 +45,7 @@ class BrassMallet(Spanner):
         if self._gliss_to_next_brass_mallet_contact_point(leaf):
             self._make_brass_mallet_glissando_overrides(
                 brass_mallet_contact_point=brass_mallet_contact_point,
+                leaf=leaf,
                 lilypond_format_bundle=lilypond_format_bundle,
                 )
         return lilypond_format_bundle
@@ -83,8 +85,42 @@ class BrassMallet(Spanner):
     def _make_brass_mallet_glissando_overrides(
         self,
         brass_mallet_contact_point,
+        leaf,
         lilypond_format_bundle=None,
         ):
+    # TODO: fret sound markings.
+    # if brass_mallet_contact_point.fret_noise:
+    #     override_ = lilypondnametools.LilyPondGrobOverride(
+    #         grob_name='Glissando',
+    #         is_once=True,
+    #         property_path='stencil',
+    #         value=schemetools.Scheme('ly:text-interface::print'),
+    #         )
+    #     string = override_.override_string
+    #     lilypond_format_bundle.grob_overrides.append(string)
+    #     markup = markuptools.Markup("|")
+    #     markup = markup.fontsize(-3)
+    #     hspacesize = 5.2 * self._leaf_duration_as_decimal(leaf) + 1.8
+    #     markup = markuptools.Markup.concat([markuptools.Markup.hspace(hspacesize), markup]*self._fret_count_to_next_leaf(leaf))
+    #     override_ = lilypondnametools.LilyPondGrobOverride(
+    #         grob_name='Glissando',
+    #         is_once=True,
+    #         property_path='text',
+    #         value=markup,
+    #         )
+    #     string = override_.override_string
+    #     lilypond_format_bundle.grob_overrides.append(string)
+    #     value = brass_mallet_contact_point.string_space * 5 - 10.5
+    #     override_ = lilypondnametools.LilyPondGrobOverride(
+    #         grob_name='Glissando',
+    #         is_once=True,
+    #         property_path='Y-offset',
+    #         value=value,
+    #         )
+    #     string = override_.override_string
+    #     lilypond_format_bundle.grob_overrides.append(string)
+    #     lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+    # else:
         value = brass_mallet_contact_point.string_space * 5 - 10
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='Glissando',
@@ -103,6 +139,18 @@ class BrassMallet(Spanner):
         string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(string)
         lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
+
+    def _leaf_duration_as_decimal(self, leaf):
+        duration = inspect_(leaf).get_duration()
+        fraction = durationtools.Duration.durations_to_nonreduced_fractions([duration])
+        decimal = fraction[0].numerator / fraction[0].denominator
+        return decimal
+
+    def _fret_count_to_next_leaf(self, leaf):
+        next_leaf = inspect_(leaf).get_leaf(1)
+        next_contact_point = inspect_(next_leaf).get_indicator(BrassMalletContactPoint)
+        current_contact_point = inspect_(leaf).get_indicator(BrassMalletContactPoint)
+        return abs(next_contact_point.contact_point - current_contact_point.contact_point)
 
     def _gliss_to_next_brass_mallet_contact_point(self, leaf):
         if self._is_my_last_leaf(leaf):
